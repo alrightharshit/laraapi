@@ -29,12 +29,13 @@ class UsersController extends Controller
      */
     public function __construct(User $model)
     {
+        
         $this->model = $model;
-        $this->middleware('permission:List users')->only('index');
-        $this->middleware('permission:List users')->only('show');
-        $this->middleware('permission:Create users')->only('store');
-        $this->middleware('permission:Update users')->only('update');
-        $this->middleware('permission:Delete users')->only('destroy');
+        $this->middleware('permission:List Users')->only('index');
+        $this->middleware('permission:List Users')->only('show');
+        $this->middleware('permission:Create Users')->only('store');
+        $this->middleware('permission:Update Users')->only('update');
+        $this->middleware('permission:Delete Users')->only('destroy');
     }
 
     /**
@@ -60,7 +61,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = $this->model->with('roles.permissions')->byUuid($id)->firstOrFail();
-
+        // $user->assignRole('Users','Member','Admin');
         return $this->response->item($user, new UserTransformer());
     }
 

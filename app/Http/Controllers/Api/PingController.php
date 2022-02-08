@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Dingo\Api\Routing\Helpers;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Str;
+
 
 /**
  * Class PingController.
@@ -21,6 +24,12 @@ class PingController extends Controller
      */
     public function index()
     {
+        // $uuid = Str::orderedUuid();
+        Permission::create(['name' => 'List Users','uuid' => Str::orderedUuid()]);
+        Permission::create(['name' => 'Delete Users','uuid' => Str::orderedUuid()]);
+        Permission::create(['name' => 'Create Users','uuid' => Str::orderedUuid()]);
+        Permission::create(['name' => 'Update Users','uuid' => Str::orderedUuid()]);
+       
         return $this->response->array([
             'status' => 'ok',
             'timestamp' => \Carbon\Carbon::now(),

@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('dev:generate-personal-token {userId}', function ($userId) {
     $user = \App\Models\User::find($userId);
     $this->info('Token for user '.$user->name);
-    $token = $user->createToken('Personal Access Token')->accessToken;
+    $token = $user->createToken('Grant Access Token')->accessToken;
     $this->info($token);
 })->describe('Generates a personal access token for a user');

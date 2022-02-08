@@ -7,6 +7,7 @@ $api->version('v1', function($api){
     $api->group(['middleware' => ['throttle:60,1', \Illuminate\Routing\Middleware\SubstituteBindings::class], 'namespace' => 'App\Http\Controllers'], function($api) {
 
         $api->get('ping', 'Api\PingController@index');
+        // $api->get('ping', 'Api\PingController@index');
 
         $api->get('assets/{uuid}/render', 'Api\Assets\RenderFileController@show');
 
